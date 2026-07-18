@@ -6,10 +6,10 @@ Made by [Korra Academy](https://korra.academy/) — the team behind **[Korra.Kid
 
 ## What's inside
 
-1. **10 unplugged coding activities** (below) — teach sequencing, loops, conditionals and debugging away from a screen.
+1. **11 unplugged coding activities** (below, one added weekly) — teach sequencing, loops, conditionals and debugging away from a screen.
 2. **[`first-game.html`](first-game.html)** — a "catch the stars" game in a single file. Download it, double-click it, then open it in any text editor and change the numbers to make the game yours.
 
-## 10 unplugged coding activities
+## The unplugged coding activities
 
 ### 1. Robot parent
 Child writes step-by-step instructions ("algorithm") to make you cross the room and pick up a toy. Follow them *literally*. Missing step = bug. Teaches: algorithms, debugging.
@@ -40,6 +40,9 @@ Give a recipe/instruction list with 3 deliberate mistakes. Child finds and fixes
 
 ### 10. Network postman
 Write a message, split it into 3 numbered envelopes, deliver them out of order via different rooms; receiver reassembles. Teaches: how the internet sends packets.
+
+### 11. The sock-matching problem
+Tip a basket of clean socks on the floor. Round 1: find pairs by grabbing one sock, then hunting through the whole pile for its partner (that's a *linear search* — count how many socks you touch). Round 2: first sort the pile into colour groups, THEN pair within each group. Compare the counts. Teaches: why organising data first makes searching dramatically faster — the idea behind every database index.
 
 ## The first game (edit it!)
 

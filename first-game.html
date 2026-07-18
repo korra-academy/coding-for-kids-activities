@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catch the Stars — a first game you can edit | Korra.Kids</title>
+<meta name="description" content="A catch-the-stars game for kids in one HTML file. Open it, play it, then edit the code to make it yours. Free from Korra Academy.">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; background:#113B33; color:#F5F2EB; text-align:center; }
+  h1 { font-size:1.3rem; margin:12px 0 4px; }
+  p  { margin:4px 0 10px; font-size:.9rem; opacity:.85; }
+  canvas { background:#0b2a24; border:3px solid #F2C14E; border-radius:12px; touch-action:none; max-width:95vw; }
+  a { color:#F2C14E; }
+</style>
+</head>
+<body>
+<h1>⭐ Catch the Stars</h1>
+<p>Arrow keys (or drag on touch screens). Edit this file to change the game! — <a href="https://korra.kids/">korra.kids</a></p>
+<canvas id="game" width="480" height="520"></canvas>
+
+<script>
+// ============================================================
+//  HELLO! This is the game's code. You are allowed to change it.
+//  Everything in SETTINGS is safe to play with.
+//  Change a number, save the file, refresh the browser. That's coding.
+// ============================================================
+const SETTINGS = {
+  playerName:   "Player 1",   // put YOUR name here
+  basketWidth:  70,           // try 200 for easy mode
+  basketColor:  "#F2C14E",    // any colour name ("hotpink") or code
+  starColor:    "#FFFFFF",
+  starSize:     10,           // try 25 for giant stars
+  fallSpeed:    2.2,          // try 6 if you are brave
+  newStarEvery: 900,          // milliseconds between stars (lower = harder)
+  livesAtStart: 3
+};
+// ============================================================
+
+const cv = document.getElementById("game");
+const cx = cv.getContext("2d");
+let basketX = cv.width / 2;
+let stars = [];            // each star is {x, y}
+let score = 0;
+let lives = SETTINGS.livesAtStart;
+let gameOver = false;
+
+// --- controls: keyboard ---
+const keys = {};
+addEventListener("keydown", e => { keys[e.key] = true; });
+addEventListener("keyup",   e => { keys[e.key] = false; });
+// --- controls: touch/mouse drag ---
+function dragTo(clientX) {
+  const r = cv.getBoundingClientRect();
+  basketX = (clientX - r.left) * (cv.width / r.width);
+}
+cv.addEventListener("pointermove", e => { if (e.buttons || e.pointerType === "touch") dragTo(e.clientX); });
+cv.addEventListener("pointerdown", e => { if (gameOver) restart(); else dragTo(e.clientX); });
+
+function restart() {
+  stars = []; score = 0; lives = SETTINGS.livesAtStart; gameOver = false;
+}
+
+// a new star appears at a random x position at the top
+setInterval(() => {
+  if (!gameOver) stars.push({ x: Math.random() * (cv.width - 20) + 10, y: -10 });
+}, SETTINGS.newStarEvery);
+
+function drawStar(s) {
+  cx.fillStyle = SETTINGS.starColor;
+  cx.beginPath();
+  for (let i = 0; i < 10; i++) {           // 5-pointed star = 10 corners
+    const r = i % 2 ? SETTINGS.starSize / 2 : SETTINGS.starSize;
+    const a = (Math.PI / 5) * i - Math.PI / 2;
+    cx.lineTo(s.x + r * Math.cos(a), s.y + r * Math.sin(a));
+  }
+  cx.fill();
+}
+
+function frame() {
+  // move the basket
+  if (keys.ArrowLeft)  basketX -= 6;
+  if (keys.ArrowRight) basketX += 6;
+  basketX = Math.max(SETTINGS.basketWidth / 2, Math.min(cv.width - SETTINGS.basketWidth / 2, basketX));
+
+  // clear the screen
+  cx.clearRect(0, 0, cv.width, cv.height);
+
+  // move + draw every star
+  const basketTop = cv.height - 30;
+  for (const s of stars) {
+    s.y += SETTINGS.fallSpeed;
+    drawStar(s);
+  }
+  // did a star land in the basket? (simple "collision detection")
+  stars = stars.filter(s => {
+    const caught = s.y >= basketTop - 5 && Math.abs(s.x - basketX) < SETTINGS.basketWidth / 2;
+    if (caught) score++;
+    const missed = s.y > cv.height;
+    if (missed) lives--;
+    return !caught && !missed;
+  });
+
+  // draw the basket
+  cx.fillStyle = SETTINGS.basketColor;
+  cx.fillRect(basketX - SETTINGS.basketWidth / 2, basketTop, SETTINGS.basketWidth, 14);
+
+  // draw the score
+  cx.fillStyle = "#F5F2EB";
+  cx.font = "16px system-ui";
+  cx.textAlign = "left";
+  cx.fillText(`${SETTINGS.playerName}: ${score} ⭐   lives: ${lives}`, 12, 24);
+
+  if (lives <= 0) gameOver = true;
+  if (gameOver) {
+    cx.textAlign = "center";
+    cx.font = "28px system-ui";
+    cx.fillText("Game over! Score: " + score, cv.width / 2, cv.height / 2);
+    cx.font = "16px system-ui";
+    cx.fillText("Press any key or tap to play again", cv.width / 2, cv.height / 2 + 30);
+    if (Object.values(keys).some(Boolean)) restart();
+  }
+  requestAnimationFrame(frame);   // draw the next frame (~60 times a second)
+}
+frame();
+</script>
+</body>
+</html>

@@ -6,7 +6,7 @@ Made by [Korra Academy](https://korra.academy/) — the team behind **[Korra.Kid
 
 ## What's inside
 
-1. **11 unplugged coding activities** (below, one added weekly) — teach sequencing, loops, conditionals and debugging away from a screen.
+1. **12 unplugged coding activities** (below, one added weekly) — teach sequencing, loops, conditionals and debugging away from a screen.
 2. **[`first-game.html`](first-game.html)** — a "catch the stars" game in a single file. Download it, double-click it, then open it in any text editor and change the numbers to make the game yours.
 
 ## The unplugged coding activities
@@ -43,6 +43,9 @@ Write a message, split it into 3 numbered envelopes, deliver them out of order v
 
 ### 11. The sock-matching problem
 Tip a basket of clean socks on the floor. Round 1: find pairs by grabbing one sock, then hunting through the whole pile for its partner (that's a *linear search* — count how many socks you touch). Round 2: first sort the pile into colour groups, THEN pair within each group. Compare the counts. Teaches: why organising data first makes searching dramatically faster — the idea behind every database index.
+
+### 12. Variable cups
+Label three paper cups `score`, `lives` and `level` and put a pile of counters (coins, dried pasta) beside them. Play any simple game — snap, a dice race, skittles with rolled-up socks — but nobody may keep a number in their head. Every change must be said out loud as an instruction and then done to a cup: "set lives to 3", "add 1 to score", "if score is 10 THEN add 1 to level AND set score to 0". If a number isn't in a cup, it doesn't exist — and a cup can only ever hold one value at a time. Teaches: variables — named boxes that store one value — and how a program changes its state one instruction at a time.
 
 ## The first game (edit it!)
 

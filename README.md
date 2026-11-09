@@ -6,7 +6,7 @@ Made by [Korra Academy](https://korra.academy/) — the team behind **[Korra.Kid
 
 ## What's inside
 
-1. **12 unplugged coding activities** (below, one added weekly) — teach sequencing, loops, conditionals and debugging away from a screen.
+1. **13 unplugged coding activities** (below, one added weekly) — teach sequencing, loops, conditionals and debugging away from a screen.
 2. **[`first-game.html`](first-game.html)** — a "catch the stars" game in a single file. Download it, double-click it, then open it in any text editor and change the numbers to make the game yours.
 
 ## The unplugged coding activities
@@ -46,6 +46,9 @@ Tip a basket of clean socks on the floor. Round 1: find pairs by grabbing one so
 
 ### 12. Variable cups
 Label three paper cups `score`, `lives` and `level` and put a pile of counters (coins, dried pasta) beside them. Play any simple game — snap, a dice race, skittles with rolled-up socks — but nobody may keep a number in their head. Every change must be said out loud as an instruction and then done to a cup: "set lives to 3", "add 1 to score", "if score is 10 THEN add 1 to level AND set score to 0". If a number isn't in a cup, it doesn't exist — and a cup can only ever hold one value at a time. Teaches: variables — named boxes that store one value — and how a program changes its state one instruction at a time.
+
+### 13. The flipped-card magic trick
+Lay out 25 cards face up in a 5×5 grid — playing cards work (red vs black), or squares of paper coloured on one side. Say you're "making it harder" and add a sixth row and a sixth column, quietly choosing each new card so that every row and every column now has an *even* number of black cards (that's the secret — don't explain yet). Turn your back. Child flips any one card. Turn round and point to it straight away: it's where the only row with an odd count of black cards crosses the only column with an odd count. Do it three times, then let them work out the trick and become the magician. Teaches: error detection — the extra row and column are *parity bits*, the same trick computers use to notice when a message arrives with one bit changed (it's how the postman from activity 10 can tell an envelope got smudged on the way).
 
 ## The first game (edit it!)
 
